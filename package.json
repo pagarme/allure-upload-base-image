@@ -1,0 +1,24 @@
+{
+  "name": "allure-upload",
+  "version": "1.0.0",
+  "description": "upload allure files using post to allure-docker",
+  "main": "upload.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "upload": "node upload.js"
+  },
+  "keywords": [
+    "allure",
+    "upload",
+    "allure",
+    "allure-results",
+    "results"
+  ],
+  "author": "Thiago Simoes Gonçalves",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "superagent": "^6.1.0",
+    "yargs": "^16.1.1"
+  }
+}
