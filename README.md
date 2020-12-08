@@ -1,0 +1,1 @@
+# allure-upload-base-image
