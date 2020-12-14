@@ -45,12 +45,16 @@ workflows:
       build-master:
         jobs:
           - build:
+              context:
+                - dockerhub
               filters:
                 branches:
-                  only: master
+                  only: main
           - publish-latest:
+              context:
+                - dockerhub
               requires:
                 - build
               filters:
                 branches:
-                  only: master
+                  only: main
