@@ -1,7 +1,6 @@
 # Checklist
 
 - [ ] Incluir @pagarme/team-qa para revisão
-- [ ] PR atrelado a uma tarefa no Jira
 
 ## Descrição do Pull Request
 
@@ -26,33 +25,6 @@
             - API    
             - Aceitação    
             - Unitário
--->
-
-
-### Plataformas de Teste
-
-<!--
-  Descreva se aplicável.
-  Exemplos:     
-    - Browser: Chrome                 
-               Firefox                
-               EDGE      
-    - Mobile: 
-        - Browser: Chrome                        
-                   Firefox     
-        - Nativo:  Android                       
-                   iOS
--->
-
-### Versões dos sistema afetados
-
-<!--
-  Descreva se aplicável.
-  Exemplos:     
-        2013-03-01 | API V1      
-        2017-07-17 | API V2      
-        2017-08-28 | API V3      
-        2019-09-01 | API V4
 -->
 
 ### Dependências e Blockers
