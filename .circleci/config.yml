@@ -7,10 +7,45 @@ executors:
     docker:
       - image: circleci/buildpack-deps:stretch
 jobs:
+  checkout-code:
+    machine: true
+    steps:
+      - checkout
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - ./
+  docker-linter:
+    machine: true
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run:
+          name: Docker linter
+          command: docker run --rm -i hadolint/hadolint < dockerfile
+        
+  linter:
+    machine: true
+    steps:
+      - attach_workspace:
+          at: ~/project
+      - run: |
+            echo 'export NVM_DIR="/opt/circleci/.nvm"' >> $BASH_ENV
+            echo ' [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
+      - run: |
+          nvm install v10
+          nvm alias default v10
+      - run: npm install
+      - run:
+          name: JS linter
+          command: npm run lint
+      - store_artifacts:
+          path: /home/circleci/.npm/_logs/
   build:
     executor: docker-publisher
     steps:
-      - checkout
+      - attach_workspace:
+          at: ~/project
       - setup_remote_docker
       - run:
           name: Build Docker image
@@ -44,9 +79,19 @@ workflows:
       version: 2
       build-master:
         jobs:
+          - checkout-code
+          - docker-linter:
+              requires:
+                - checkout-code
+          - linter:
+              requires:
+                - checkout-code
           - build:
               context:
                 - dockerhub
+              requires:
+                - docker-linter
+                - linter
               filters:
                 branches:
                   only: main

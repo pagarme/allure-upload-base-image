@@ -1,6 +1,6 @@
-FROM node
+FROM node:current-buster-slim
 
-ADD upload.js .
-ADD package.json .
+COPY upload.js .
+COPY package.json .
 
 RUN npm install
