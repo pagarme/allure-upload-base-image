@@ -16,7 +16,7 @@ O projeto por padrão pega a pasta allure-results e faz a disponibilização via
 ```shell
 docker run --env URL_REPORT=$URL_REPORT  \
 -v $ALLURE_RESULTS:/allure-results  \
-pagarme/allure-upload node upload.js --projectID=$ID
+pagarme/allure-upload --projectID=$ID
 ```
 
 Onde:
