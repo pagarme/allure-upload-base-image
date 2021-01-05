@@ -45,3 +45,4 @@ Para contribuir com o projeto basta:
 ## :books: Referências
 
 - [Allure adicionando conteúdo no report](https://github.com/pagarme/cafe-com-testes/blob/main/artigos/allure-conteudo-no-report.md)
+- [Allure Dashboard: explorando o Menu e os Gráficos](https://medium.com/pagarme/allure-dashboard-explorando-o-menu-e-os-gr%C3%A1ficos-c345ab942f9d)
