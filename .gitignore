@@ -4,3 +4,4 @@ package-lock.json
 # Node Modules
 node_modules/
 
+allure-results/*

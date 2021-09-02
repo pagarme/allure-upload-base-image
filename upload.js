@@ -5,18 +5,17 @@ const superagent = require('superagent')
 const yargs = require('yargs/yargs')
 const { hideBin } = require('yargs/helpers')
 const argv = yargs(hideBin(process.argv)).argv
-const upload = []
+let upload
 
 function readFiles (path = 'allure-results') {
   const files = fs.readdirSync(path)
-  for (const file in files) {
-    const contents = fs.readFileSync(path + '/' + files[file], { encoding: 'base64' })
-    upload.push({
-      file_name: files[file],
+  upload = files.map(function (file) {
+    const contents = fs.readFileSync(path + '/' + file, { encoding: 'base64' })
+    return {
+      file_name: file,
       content_base64: contents
-    })
-    console.log('add file to upload: ' + upload[file].file_name)
-  }
+    }
+  })
 }
 
 async function uploadFile (url = process.env.URL_REPORT, projectID) {
@@ -45,6 +44,7 @@ async function uploadFile (url = process.env.URL_REPORT, projectID) {
 
 async function main () {
   readFiles(argv.path)
+  console.log(upload)
   await uploadFile(argv.url, argv.projectID)
 }
 
